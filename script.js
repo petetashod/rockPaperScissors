@@ -8,53 +8,69 @@ let rock = document.getElementById("rock")
 let paper = document.getElementById("paper")
 let scissors = document.getElementById("scissors")
 
-let computerChoice = Math.floor(Math.random() * rockPaperOrScissors.length)
+let computerChoice =  Math.floor(Math.random() * rockPaperOrScissors.length)
 
-let computerPicks = computerChoice
-    // for ( let x of choice) {
-    //     x.addEventListener("click",function(){ 
-    //         gamePlay();
-    //         scoreKeeper();
+let computerPicks = rockPaperOrScissors[computerChoice]
+
+gamePlay = (userChoice)=>{
+
+    if (userChoice == computerPicks) {
+    
+        document.getElementById("winner").innerHTML = `The user chose ${userChoice} and so did the computer `
+    }
+     if(userChoice == 'rock' && computerPicks == 'scissors') {
+        document.getElementById("winner").innerHTML = `The user chose ${userChoice} and the computer chose scissors `
             
-    //     })
-    // }
+    }
 
-gamePlay = ()=>{
+     if(userChoice =='paper' && computerPicks == 'rock'){
+        document.getElementById("winner").innerHTML = `The user chose ${userChoice} and the computer chose rock `
+    }
 
-    if (choice === computerPicks) {
-        document.getElementById("winner").innerHTML = `The user chose ${choice} and so did the computer `
+     if(userChoice == 'scissors' && computerPicks == 'paper'){
+        document.getElementById("winner").innerHTML = `The user chose ${userChoice} and the computer chose paper`
+    }
+}   
+
+computerSelection = (userChoice)=>{
+    if(computerPicks == 'rock' && userChoice == 'scissors'){
+        document.getElementById("score").innerHTML = `computer chose rock is and the user chose ${userChoice}`
     } 
-
-     if (choice == rock && computerPicks[2]){
-        document.getElementById("winner").innerHTML = `The user chose ${choice} and the computer chose ${computerPicks[2]} `
-            
+    if (computerPicks == 'paper' && userChoice == 'rock' ){
+        document.getElementById("score").innerHTML = ` computer chose paper and the user chose ${userChoice} `
+    }
+    if(computerPicks == 'scissors'&& userChoice == 'paper'){
+        document.getElementById("score").innerHTML = ` computer chose scissors and the user chose ${userChoice} `  
     }
 
-     if(choice == paper && computerPicks[0]){
-        document.getElementById("winner").innerHTML = `The user chose ${choice} and the computer chose ${computerPicks[0]} `
-    }
 
-     if(choice == scissors && computerPicks[1]){
-        document.getElementById("winner").innerHTML = `The user chose ${choice} and the computer chose ${computerPicks[1]}`
-    }
 }
         
-    let scoreKeeper = ()=>{
+    let scoreKeeper = (userChoice)=>{
+         if (computerPicks == 'rock' && userChoice == 'scissors'|| computerPicks == 'paper' && userChoice == 'rock' || 
+                computerPicks == 'scissors'&& userChoice == 'paper'){
+                computerScore++
+                document.getElementById("score").innerHTML = `computer score is ${computerScore} points`
 
-            if(computerPicks[0] && choice == scissors  || 
-            computerPicks[1] && choice == rock ||
-            computerPicks[2] && choice == paper){
-            computerScore+1
+        
+            }
+
+             else if (computerPicks == userChoice){
+                document.getElementById("score").innerHTML = `it was a tie `
             }
             else{
-                userScore+1
+                userScore++
+                document.getElementById("score").innerHTML = `The user score is ${userScore} point(s)`
             }
         }
+        
  
         for ( let x of choice) {
-            x.addEventListener("click",function(){ 
-                gamePlay();
-                scoreKeeper();
+
+            x.addEventListener("click",function(e){ 
+                gamePlay(e.target.id);
+                computerSelection(e.target.id);
+                scoreKeeper(e.target.id);
                 
             })
         }
