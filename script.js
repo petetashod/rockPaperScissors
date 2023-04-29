@@ -32,19 +32,19 @@ gamePlay = (userChoice)=>{
     }
 }   
 
-computerSelection = (userChoice)=>{
-    if(computerPicks == 'rock' && userChoice == 'scissors'){
-        document.getElementById("score").innerHTML = `computer chose rock is and the user chose ${userChoice}`
-    } 
-    if (computerPicks == 'paper' && userChoice == 'rock' ){
-        document.getElementById("score").innerHTML = ` computer chose paper and the user chose ${userChoice} `
-    }
-    if(computerPicks == 'scissors'&& userChoice == 'paper'){
-        document.getElementById("score").innerHTML = ` computer chose scissors and the user chose ${userChoice} `  
-    }
+// computerSelection = (userChoice)=>{
+//     if(computerPicks == 'rock' && userChoice == 'scissors'){
+//         document.getElementById("score").innerHTML = `computer chose rock is and the user chose ${userChoice}`
+//     } 
+//     if (computerPicks == 'paper' && userChoice == 'rock' ){
+//         document.getElementById("score").innerHTML = ` computer chose paper and the user chose ${userChoice} `
+//     }
+//     if(computerPicks == 'scissors'&& userChoice == 'paper'){
+//         document.getElementById("score").innerHTML = ` computer chose scissors and the user chose ${userChoice} `  
+//     }
 
 
-}
+// }
         
     let scoreKeeper = (userChoice)=>{
          if (computerPicks == 'rock' && userChoice == 'scissors'|| computerPicks == 'paper' && userChoice == 'rock' || 
@@ -63,6 +63,20 @@ computerSelection = (userChoice)=>{
                 document.getElementById("score").innerHTML = `The user score is ${userScore} point(s)`
             }
         }
+
+        computerSelection = (userChoice)=>{
+            if(computerPicks == 'rock' && userChoice == 'scissors'){
+                document.getElementById("score").innerHTML = `computer chose rock and the user chose ${userChoice}`
+            } 
+            if (computerPicks == 'paper' && userChoice == 'rock' ){
+                document.getElementById("score").innerHTML = ` computer chose paper and the user chose ${userChoice} `
+            }
+            if(computerPicks == 'scissors'&& userChoice == 'paper'){
+                document.getElementById("score").innerHTML = ` computer chose scissors and the user chose ${userChoice} `  
+            }
+        
+        
+        }
         
  
         for ( let x of choice) {
@@ -71,9 +85,13 @@ computerSelection = (userChoice)=>{
                 gamePlay(e.target.id);
                 computerSelection(e.target.id);
                 scoreKeeper(e.target.id);
-                
+            
             })
+            
+        
         }
+
+
 
 
 
