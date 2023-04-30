@@ -9,16 +9,25 @@ let rock = document.getElementById("rock");
 let paper = document.getElementById("paper");
 let scissors = document.getElementById("scissors");
 
+    
+    
 
 
-    let computerChoice = Math.floor(Math.random() * rockPaperOrScissors.length);
-    let computerPicks = rockPaperOrScissors[computerChoice]
+
+    //  let computerChoice = Math.floor(Math.random() * rockPaperOrScissors.length);
+    //  let computerPicks = rockPaperOrScissors[computerChoice]
+
     
     
 
 
 gamePlay = (userChoice) => {
-    
+   
+    let computerChoice = Math.floor(Math.random() * rockPaperOrScissors.length);
+    let computerPicks = rockPaperOrScissors[computerChoice]
+
+   
+   
   if (userChoice == computerPicks) {
     document.getElementById(
       "winner"
@@ -45,6 +54,7 @@ gamePlay = (userChoice) => {
 };
 
  scoreKeeper = (userChoice) => {
+    
   if (
     (computerPicks == "rock" && userChoice == "scissors") ||
     (computerPicks == "paper" && userChoice == "rock") ||
@@ -68,6 +78,7 @@ gamePlay = (userChoice) => {
 };
 
 computerSelection = (userChoice) => {
+    
   if (computerPicks == "rock" && userChoice == "scissors") {
     document.getElementById(
       "score"
