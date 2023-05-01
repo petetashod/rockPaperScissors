@@ -1,11 +1,14 @@
 body{
-    margin: 0;
+    margin-right: 0;
     padding: 0;
     font-family: 'Times New Roman', Times, serif;
+    background-color: antiquewhite;
+    
 }
 
+
 .selector{
-    width: 200px;
     height: 200px;
 }
+
 
