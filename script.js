@@ -9,17 +9,24 @@ let rock = document.getElementById("rock");
 let paper = document.getElementById("paper");
 let scissors = document.getElementById("scissors");
 
-let computerChoice = 0;
-let computerPicks = 0;
 
-gamePlay = (userChoice) => {
-  let computerChoice = Math.floor(Math.random() * rockPaperOrScissors.length);
-  let computerPicks = rockPaperOrScissors[computerChoice];
+let computerChoice;
+let computerPicks;
+let userChoice;
 
-  if (userChoice == computerPicks) {
+function randomizeComputerChoice(){
+    computerChoice = Math.floor(Math.random() * rockPaperOrScissors.length);
+    computerPicks = rockPaperOrScissors[computerChoice];
+}
+
+
+
+gamePlay = () => {
+
+  if (userChoice === computerPicks) {
     document.getElementById(
       "winner"
-    ).textContent= `The user chose ${userChoice} and so did the computer `;
+    ).textContent = `The user chose ${userChoice} and so did the computer `;
   }
   if (userChoice == "rock" && computerPicks == "scissors") {
     document.getElementById(
@@ -40,11 +47,11 @@ gamePlay = (userChoice) => {
   }
 };
 
-scoreKeeper = (userChoice) => {
+scoreKeeper = () => {
   if (
-    computerPicks == "rock" && userChoice == "scissors" ||
-    computerPicks == "paper" && userChoice == "rock" ||
-    computerPicks == "scissors" && userChoice == "paper"
+    (computerPicks == "rock" && userChoice == "scissors") ||
+    (computerPicks == "paper" && userChoice == "rock") ||
+    (computerPicks == "scissors" && userChoice == "paper")
   ) {
     computerScore++;
     document.getElementById(
@@ -52,9 +59,12 @@ scoreKeeper = (userChoice) => {
     ).textContent = `computer score is ${computerScore} points`;
   }
 
-  if (computerPicks == userChoice) {
+  if (computerPicks === userChoice || userChoice === computerPicks) {
     document.getElementById("score").textContent = `it was a tie `;
-  } else {
+  }
+ if ((userChoice == "rock" && computerPicks == "scissors")|| 
+            (userChoice == "paper" && computerPicks == "rock") ||
+            (userChoice == "scissors" && computerPicks == "paper")){
     userScore++;
     document.getElementById(
       "score"
@@ -62,28 +72,48 @@ scoreKeeper = (userChoice) => {
   }
 };
 
-computerSelection = (userChoice) => {
+computerSelection = () => {
   if (computerPicks == "rock" && userChoice == "scissors") {
     document.getElementById(
-      "score"
+      "winner"
     ).textContent = `computer chose rock and the user chose ${userChoice}`;
   }
   if (computerPicks == "paper" && userChoice == "rock") {
     document.getElementById(
-      "score"
+      "winner"
     ).textContent = ` computer chose paper and the user chose ${userChoice} `;
   }
   if (computerPicks == "scissors" && userChoice == "paper") {
     document.getElementById(
-      "score"
+      "winner"
     ).textContent = ` computer chose scissors and the user chose ${userChoice} `;
   }
 };
 
-for (let x of choice) {
-  x.addEventListener("click", function (e) {
+
+  rock.addEventListener("click", function (e) {
+    userChoice = 'rock';
+    randomizeComputerChoice();
     gamePlay(e.target.id);
     computerSelection(e.target.id);
     scoreKeeper(e.target.id);
+
+   });
+
+  paper.addEventListener("click", function(e){
+    userChoice ='paper'
+    randomizeComputerChoice();
+    gamePlay(e.target.id)
+    computerSelection(e.target.id)
+    scoreKeeper(e.target.id)
   });
-}
+
+
+scissors.addEventListener("click", function (e) {
+    userChoice ='scissors'
+    randomizeComputerChoice();
+    gamePlay(e.target.id)
+    computerSelection(e.target.id)
+    scoreKeeper(e.target.id)
+
+});
